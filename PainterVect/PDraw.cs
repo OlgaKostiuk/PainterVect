@@ -13,8 +13,9 @@ namespace PainterVect
     public partial class PDraw : PictureBox
     {
         //TODO: remove init for data
-        private XData data = new XData(); 
+        private XData data = new XData();
         private Point mouseDownPoint;
+        public XCommand cmd { get; set; }
 
         public PDraw()
         {
