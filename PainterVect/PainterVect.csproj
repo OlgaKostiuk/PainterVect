@@ -57,6 +57,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainMenu\MainMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainMenu\MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="PDraw.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -65,16 +71,61 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatusBar\StatusBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StatusBar\StatusBar.Designer.cs">
+      <DependentUpon>StatusBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolBar\ToolBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToolBar\ToolBar.Designer.cs">
+      <DependentUpon>ToolBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolBox\PColor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToolBox\PColor.Designer.cs">
+      <DependentUpon>PColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolBox\PLineWidth.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToolBox\PLineWidth.Designer.cs">
+      <DependentUpon>PLineWidth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolBox\POpen.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToolBox\POpen.Designer.cs">
+      <DependentUpon>POpen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolBox\PSave.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToolBox\PSave.Designer.cs">
+      <DependentUpon>PSave.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolBox\PType.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ToolBox\PType.Designer.cs">
       <DependentUpon>PType.cs</DependentUpon>
     </Compile>
+    <Compile Include="ToolBox\ToolBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToolBox\ToolBox.Designer.cs">
+      <DependentUpon>ToolBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="XCommand.cs" />
     <Compile Include="XData.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainMenu\MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -85,8 +136,29 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="StatusBar\StatusBar.resx">
+      <DependentUpon>StatusBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolBar\ToolBar.resx">
+      <DependentUpon>ToolBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolBox\PColor.resx">
+      <DependentUpon>PColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolBox\PLineWidth.resx">
+      <DependentUpon>PLineWidth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolBox\POpen.resx">
+      <DependentUpon>POpen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolBox\PSave.resx">
+      <DependentUpon>PSave.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ToolBox\PType.resx">
       <DependentUpon>PType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolBox\ToolBox.resx">
+      <DependentUpon>ToolBox.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

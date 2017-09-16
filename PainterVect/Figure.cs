@@ -27,8 +27,8 @@ namespace PainterVect
             End = end;
             Type = type;
             LineWidth = lineW;
-            Size = new Size(GetFigureSize().Width + 1, GetFigureSize().Height + 1);
-            BackColor = Color.Bisque;
+            Size = new Size(GetFigureSize().Width, GetFigureSize().Height);
+            BackColor = Color.Lavender;
             DrawFigure();
         }
 
@@ -49,9 +49,9 @@ namespace PainterVect
         public GraphicsPath GetGraphicsPath()
         {
 
-            Size size = GetFigureSize();
-            Point pathStart = new Point(0, 0);
-            Point lineEnd = new Point(GetFigureSize().Width, GetFigureSize().Height);
+            Size size = new Size(GetFigureSize().Width-LineWidth*2, GetFigureSize().Height-LineWidth*2);
+            Point pathStart = new Point(LineWidth, LineWidth);
+            Point lineEnd = new Point(Width, Height);
 
             GraphicsPath figure = new GraphicsPath();
 
@@ -60,7 +60,12 @@ namespace PainterVect
             else if (Type == FigureDrawing.Round)
                 figure.AddEllipse(new Rectangle(pathStart, size));
             else if (Type == FigureDrawing.Line)
-                figure.AddLine(pathStart, lineEnd);
+            {
+                if(Start.X > End.X || Start.Y > End.Y)
+                    figure.AddLine(new Point(Width, 0), new Point(0, Height));
+                else
+                    figure.AddLine(new Point(0,0), new Point(Width,Height));
+            }                
             else if (Type == FigureDrawing.RoundRectangle)
                 figure.AddPath(RoundRectangle(new Rectangle(pathStart, size), 20), false);
 

@@ -10,14 +10,11 @@ using System.Windows.Forms;
 
 namespace PainterVect.ToolBox
 {
-    public partial class PType : UserControl
+    public partial class POpen : UserControl
     {
-        public XCommand cmd { get; set; }
-
-        public PType()
+        public POpen()
         {
             InitializeComponent();
-            Controls.OfType<Button>().ToList().ForEach(x => x.Click += new EventHandler((s,e)=>cmd.setType(s,e,x.Tag.ToString())));
         }
     }
 }

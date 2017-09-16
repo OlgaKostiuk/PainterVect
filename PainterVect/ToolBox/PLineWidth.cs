@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace PainterVect.ToolBox
 {
-    public partial class PType : UserControl
+    public partial class PLineWidth : UserControl
     {
         public XCommand cmd { get; set; }
-
-        public PType()
+        public PLineWidth()
         {
             InitializeComponent();
-            Controls.OfType<Button>().ToList().ForEach(x => x.Click += new EventHandler((s,e)=>cmd.setType(s,e,x.Tag.ToString())));
+            comboBoxLineWidth.SelectedIndex = 0;
+            comboBoxLineWidth.SelectedIndexChanged += new EventHandler((s,e)=>cmd.setWidth(s,e,comboBoxLineWidth.SelectedItem.ToString()));
         }
     }
 }

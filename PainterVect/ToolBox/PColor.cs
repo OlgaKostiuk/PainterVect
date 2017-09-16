@@ -10,14 +10,21 @@ using System.Windows.Forms;
 
 namespace PainterVect.ToolBox
 {
-    public partial class PType : UserControl
+    public partial class PColor : UserControl
     {
         public XCommand cmd { get; set; }
-
-        public PType()
+        public PColor()
         {
             InitializeComponent();
-            Controls.OfType<Button>().ToList().ForEach(x => x.Click += new EventHandler((s,e)=>cmd.setType(s,e,x.Tag.ToString())));
+            btnColor.Click += BtnColor_Click;
+        }
+
+        private void BtnColor_Click(object sender, EventArgs e)
+        {
+            if(dlgColor.ShowDialog() == DialogResult.OK)
+            {
+                cmd.setColor(sender, e, dlgColor.Color);
+            }
         }
     }
 }
