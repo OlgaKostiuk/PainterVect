@@ -36,6 +36,7 @@ namespace PainterVect
                 item.Location = item.Start;
                 //item.Location = location;
                 item.DrawFigure();
+                item.MouseMove += Figure_MouseMove;
             }
             Invalidate();
         }
@@ -62,6 +63,12 @@ namespace PainterVect
                 }
             }
             cmd.coordsChangedHandler(e.Location);
+        }
+
+        private void Figure_MouseMove(object sender, MouseEventArgs e)
+        {
+            Point location = new Point(((Figure)sender).Location.X + e.Location.X, ((Figure)sender).Location.Y + e.Location.Y);
+            cmd.coordsChangedHandler(location);
         }
 
         private void PDraw_MouseUp(object sender, MouseEventArgs e)
@@ -103,9 +110,11 @@ namespace PainterVect
                 Controls.Add(figure);
                 figure.DrawFigure();
                 figure.Location = Start;
+
+                figure.MouseMove += Figure_MouseMove;
+
             }
         }
-
 
         public List<Figure> Figures
         {
