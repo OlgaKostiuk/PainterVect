@@ -12,9 +12,11 @@ namespace PainterVect.ToolBox
 {
     public partial class PSave : UserControl
     {
+        public XCommand cmd { get; set; }
         public PSave()
         {
             InitializeComponent();
+            btnSave.Click += new EventHandler((s,e)=>cmd.saveFigures(s,e));
         }
     }
 }

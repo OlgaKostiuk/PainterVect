@@ -19,6 +19,8 @@ namespace PainterVect.MainMenu
             colorToolStripMenuItem.Click += ToolStripBtnColor_Click;
             lineWidthToolStripMenuItem.DropDownItemClicked += new ToolStripItemClickedEventHandler((s, e) => cmd.setWidth(s, e, e.ClickedItem.Text));
             typeToolStripMenuItem.DropDownItemClicked += new ToolStripItemClickedEventHandler((s, e) => cmd.setType(s, e, e.ClickedItem.Tag.ToString()));
+            openToolStripMenuItem.Click += new EventHandler((s, e) => cmd.openFigures(s, e));
+            saveToolStripMenuItem.Click += new EventHandler((s, e) => cmd.saveFigures(s, e));
         }
         private void ToolStripBtnColor_Click(object sender, EventArgs e)
         {

@@ -12,9 +12,11 @@ namespace PainterVect.ToolBox
 {
     public partial class POpen : UserControl
     {
+        public XCommand cmd { get; set; }
         public POpen()
         {
             InitializeComponent();
+            btnOpen.Click += new EventHandler((s, e) => cmd.openFigures(s, e));
         }
     }
 }

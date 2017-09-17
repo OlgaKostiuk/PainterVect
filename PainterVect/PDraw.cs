@@ -12,14 +12,12 @@ namespace PainterVect
 {
     public partial class PDraw : PictureBox
     {
-        //private XData data;
         private Point mouseDownPoint;
         public XCommand cmd { get; set; }
 
         public PDraw()
         {
             InitializeComponent();
-            //data = cmd.data;
 
             MouseDown += PDraw_MouseDown;
             MouseUp += PDraw_MouseUp;
@@ -27,6 +25,19 @@ namespace PainterVect
             MouseLeave += PDraw_MouseLeave;
 
             SizeChanged += PDraw_SizeChanged;
+        }
+
+        public void Redraw()
+        {
+            foreach (var item in Figures)
+            {
+                //TODO: find location for lines 
+                //Point location = new Point();
+                item.Location = item.Start;
+                //item.Location = location;
+                item.DrawFigure();
+            }
+            Invalidate();
         }
 
         private void PDraw_MouseLeave(object sender, EventArgs e)
@@ -73,13 +84,13 @@ namespace PainterVect
                 Point End = end;
                 Figure figure;
 
-                if (End.X < Start.X && cmd.data.type != FigureDrawing.Pencil)//&& cmd.data.type != FigureDrawing.Line 
+                if (End.X < Start.X && cmd.data.type != FigureDrawing.Pencil)
                 {
                     int temp = Start.X;
                     Start = new Point(End.X, Start.Y);
                     End = new Point(temp, End.Y);
                 }
-                if (End.Y < Start.Y && cmd.data.type != FigureDrawing.Pencil)//&& cmd.data.type != FigureDrawing.Line 
+                if (End.Y < Start.Y && cmd.data.type != FigureDrawing.Pencil)
                 {
                     int temp = Start.Y;
                     Start = new Point(Start.X, End.Y);
@@ -90,7 +101,30 @@ namespace PainterVect
                 else
                     figure = new Figure(cmd.data.type, cmd.data.color, cmd.data.lineWidth, Start, End);
                 Controls.Add(figure);
+                figure.DrawFigure();
                 figure.Location = Start;
+            }
+        }
+
+
+        public List<Figure> Figures
+        {
+            get
+            {
+                List<Figure> list = new List<Figure>();
+                foreach (Control figure in Controls)
+                {
+                    list.Add((figure as Figure));
+                }
+                return list;
+            }
+            set
+            {
+                Controls.Clear();
+                foreach (Figure figure in value)
+                {
+                    Controls.Add(figure);
+                }
             }
         }
     }

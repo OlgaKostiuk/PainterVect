@@ -17,11 +17,14 @@ namespace PainterVect
             InitializeComponent();
 
             XCommand cmd = new XCommand();
+
             pDraw1.cmd = cmd;
             toolBox1.cmd = cmd;
             mainMenu1.cmd = cmd;
             toolBar1.cmd = cmd;
             statusBar1.cmd = cmd;
+
+            cmd.pdraw = pDraw1;
         }
     }
 }

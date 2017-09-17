@@ -24,6 +24,8 @@ namespace PainterVect.ToolBox
             pColor1.cmd = cmd;
             pLineWidth1.cmd = cmd;
             pType1.cmd = cmd;
+            pSave1.cmd = cmd;
+            pOpen1.cmd = cmd;
         }
     }
 }

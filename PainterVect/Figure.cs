@@ -19,6 +19,8 @@ namespace PainterVect
         public int LineWidth { get; private set; }
         public FigureDrawing Type { get; private set; }
 
+        public Figure() { }
+
         public Figure(FigureDrawing type, Color color, int lineW, Point start, Point end)
         {
             InitializeComponent();
@@ -27,13 +29,12 @@ namespace PainterVect
             End = end;
             Type = type;
             LineWidth = lineW;
-            Size = new Size(GetFigureSize().Width, GetFigureSize().Height);
             BackColor = Color.Lavender;
-            DrawFigure();
         }
 
-        private void DrawFigure()
+        public void DrawFigure()
         {
+            Size = new Size(GetFigureSize().Width, GetFigureSize().Height);
             Image = new Bitmap(Width, Height);
             Graphics graph = Graphics.FromImage(Image);
             graph.DrawPath(new Pen(Color, LineWidth), GetGraphicsPath());
@@ -51,7 +52,6 @@ namespace PainterVect
 
             Size size = new Size(GetFigureSize().Width-LineWidth*2, GetFigureSize().Height-LineWidth*2);
             Point pathStart = new Point(LineWidth, LineWidth);
-            Point lineEnd = new Point(Width, Height);
 
             GraphicsPath figure = new GraphicsPath();
 
@@ -87,6 +87,21 @@ namespace PainterVect
             arc.Y = bounds.Top;
             path.CloseFigure();
             return path;
+        }
+
+        public void SetMemento(FigureMemento memento)
+        {
+            Figure figure = memento.GetState();
+            Type = figure.Type;
+            Start = figure.Start;
+            End = figure.End;
+            Color = figure.Color;
+            LineWidth = figure.LineWidth;
+        }
+
+        public FigureMemento GetMemento()
+        {
+            return new FigureMemento(this);
         }
     }
 }

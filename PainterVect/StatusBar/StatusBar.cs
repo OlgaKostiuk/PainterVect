@@ -21,7 +21,7 @@ namespace PainterVect.StatusBar
 
         private void StatusBar_Load(object sender, EventArgs e)
         {
-            cmd.setCoordsEvent += Cmd_setCoordsEvent;
+            cmd.onCoordsChanged += Cmd_setCoordsEvent;
         }
 
         private void Cmd_setCoordsEvent(Point p)
