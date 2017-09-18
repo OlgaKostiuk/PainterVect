@@ -28,9 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.contextMenu1 = new PainterVect.ContextMenu();
+            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // contextMenu1
+            // 
+            this.contextMenu1.activeFigure = null;
+            this.contextMenu1.Location = new System.Drawing.Point(0, 0);
+            this.contextMenu1.Name = "contextMenu1";
+            this.contextMenu1.Size = new System.Drawing.Size(150, 150);
+            this.contextMenu1.TabIndex = 0;
+            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private ContextMenu contextMenu1;
     }
 }

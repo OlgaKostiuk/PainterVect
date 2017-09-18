@@ -112,7 +112,6 @@ namespace PainterVect
                 figure.Location = Start;
 
                 figure.MouseMove += Figure_MouseMove;
-
             }
         }
 

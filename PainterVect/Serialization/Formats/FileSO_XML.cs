@@ -32,7 +32,7 @@ namespace PainterVect
             {
                 figures = (List<FigureMemento>)serializer.Deserialize(reader);
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 figures = new List<FigureMemento>();
             }
