@@ -104,9 +104,11 @@ namespace PainterVect
                     End = new Point(End.X, temp);
                 }
                 if(cmd.data.type == FigureDrawing.Line)
-                    figure = new Figure(cmd.data.type, cmd.data.color, cmd.data.lineWidth, mouseDownPoint, end);
+                    figure = new Figure(cmd.data.type, cmd.data.color, cmd.data.lineWidth, mouseDownPoint, end,
+                                        cmd.data.textFont, cmd.data.textString, cmd.data.textAngle, cmd.data.textColor, cmd.data.horizontalAlign, cmd.data.verticalAlign);
                 else
-                    figure = new Figure(cmd.data.type, cmd.data.color, cmd.data.lineWidth, Start, End);
+                    figure = new Figure(cmd.data.type, cmd.data.color, cmd.data.lineWidth, Start, End,
+                                        cmd.data.textFont, cmd.data.textString, cmd.data.textAngle, cmd.data.textColor, cmd.data.horizontalAlign, cmd.data.verticalAlign);
                 Controls.Add(figure);
                 figure.DrawFigure();
                 figure.Location = Start;

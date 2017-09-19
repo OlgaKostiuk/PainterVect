@@ -33,7 +33,7 @@ namespace PainterVect
 
         public Figure GetState()
         {
-            return new Figure((FigureDrawing)type, Color.FromArgb(color), lineWidth, new Point(x1, y1), new Point(x2, y2));
+            return new Figure((FigureDrawing)type, Color.FromArgb(color), lineWidth, new Point(x1, y1), new Point(x2, y2), new Font(new FontFamily("Arial"), 20));
         }
     }
 }

@@ -78,7 +78,54 @@ namespace PainterVect
         }
 
 
+        public void setTextColor(object sender, EventArgs e)
+        {
+            ColorDialog dlgColor = new ColorDialog();
+            if (dlgColor.ShowDialog() == DialogResult.OK)
+            {
+                data.textColor = dlgColor.Color;
+            }
+        }
 
+        public void setTextFont(object sender, EventArgs e)
+        {
+            FontDialog dlg = new FontDialog();
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                data.textFont = dlg.Font;
+            }
+        }
 
+        public void setTextAngle(object sender, EventArgs e, int angle)
+        {
+            data.textAngle = angle;
+        }
+
+        public void setText(object sender, EventArgs e, string text)
+        {
+            data.textString = text;
+        }
+
+        public void setVerticalAlign(object sender, EventArgs e, string align)
+        {
+            switch (align)
+            {
+                case "Center": { data.verticalAlign = StringAlignment.Center; break; }
+                case "Near": { data.verticalAlign = StringAlignment.Near; break; }
+                case "Far": { data.verticalAlign = StringAlignment.Far; break; }
+                default: break;
+            }
+        }
+
+        public void setHorizontalAlign(object sender, EventArgs e, string align)
+        {
+            switch (align)
+            {
+                case "Center": { data.horizontalAlign = StringAlignment.Center; break; }
+                case "Near": { data.horizontalAlign = StringAlignment.Near; break; }
+                case "Far": { data.horizontalAlign = StringAlignment.Far; break; }
+                default: break;
+            }
+        }
     }
 }

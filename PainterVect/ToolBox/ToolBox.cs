@@ -26,6 +26,7 @@ namespace PainterVect.ToolBox
             pType1.cmd = cmd;
             pSave1.cmd = cmd;
             pOpen1.cmd = cmd;
+            pText1.cmd = cmd;
         }
     }
 }

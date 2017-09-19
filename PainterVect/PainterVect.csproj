@@ -101,6 +101,12 @@
     <Compile Include="StatusBar\StatusBar.Designer.cs">
       <DependentUpon>StatusBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Text.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Text.Designer.cs">
+      <DependentUpon>Text.cs</DependentUpon>
+    </Compile>
     <Compile Include="ToolBar\ToolBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -130,6 +136,12 @@
     </Compile>
     <Compile Include="ToolBox\PSave.Designer.cs">
       <DependentUpon>PSave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolBox\PText.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToolBox\PText.Designer.cs">
+      <DependentUpon>PText.cs</DependentUpon>
     </Compile>
     <Compile Include="ToolBox\PType.cs">
       <SubType>UserControl</SubType>
@@ -183,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ToolBox\PSave.resx">
       <DependentUpon>PSave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolBox\PText.resx">
+      <DependentUpon>PText.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ToolBox\PType.resx">
       <DependentUpon>PType.cs</DependentUpon>

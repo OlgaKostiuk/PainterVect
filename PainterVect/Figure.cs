@@ -22,6 +22,14 @@ namespace PainterVect
         public Point mouseLocation = new Point();
         bool resize = false;
 
+        public string TextString { get; set; }
+        public Font TextFont {get; set; }
+        public int TextAngle { get; set; }
+        public Color TextColor { get; set; }
+        public StringAlignment HorizontalAlign { get; set; }
+        public StringAlignment VerticalAlign { get; set; }
+
+
         public Figure()
         {
             InitializeComponent();
@@ -33,7 +41,13 @@ namespace PainterVect
             ContextMenuStrip = contextMenu1.ContextMenuStrip;
         }
 
-        public Figure(FigureDrawing type, Color color, int lineW, Point start, Point end)
+        public Figure(FigureDrawing type, Color color, int lineW, Point start, Point end,
+                        Font font,
+                        string text = "",
+                        int textAngle = 0,
+                        Color textColor = new Color(),
+                        StringAlignment horizontalAlign = StringAlignment.Center,
+                        StringAlignment verticalAlign = StringAlignment.Center)
         {
             InitializeComponent();
             Color = color;
@@ -41,6 +55,14 @@ namespace PainterVect
             End = end;
             Type = type;
             LineWidth = lineW;
+
+            TextFont = font == null ? new Font(new FontFamily("Arial"), 20) : font;
+            TextString = text;
+            TextAngle = textAngle;
+            TextColor = textColor;
+            HorizontalAlign = horizontalAlign;
+            VerticalAlign = verticalAlign;
+
             MouseMove += Figure_MouseMove;
             MouseDown += Figure_MouseDown;
             MouseUp += Figure_MouseUp;
@@ -121,6 +143,7 @@ namespace PainterVect
             Image = new Bitmap(Width, Height);
             Graphics graph = Graphics.FromImage(Image);
             graph.DrawPath(new Pen(Color, LineWidth), GetGraphicsPath());
+            DrawText(graph);
         }
 
         public void DrawFigure()
@@ -129,6 +152,7 @@ namespace PainterVect
             Image = new Bitmap(Width, Height);
             Graphics graph = Graphics.FromImage(Image);
             graph.DrawPath(new Pen(Color, LineWidth), GetGraphicsPath());
+            DrawText(graph);
         }
 
         public Size GetFigureSize()
@@ -178,6 +202,23 @@ namespace PainterVect
             arc.Y = bounds.Top;
             path.CloseFigure();
             return path;
+        }
+
+        private void DrawText(Graphics g)
+        {
+            StringFormat format = new StringFormat();
+            format.LineAlignment = VerticalAlign;
+            format.Alignment = HorizontalAlign;
+
+            //move rotation point to center of image
+            g.TranslateTransform((float)ClientRectangle.Width / 2, (float)ClientRectangle.Height / 2);
+            //rotate
+            g.RotateTransform(TextAngle);
+            //move image back
+            g.TranslateTransform(-(float)ClientRectangle.Width / 2, -(float)ClientRectangle.Height / 2);
+
+            g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
+            g.DrawString(TextString, TextFont, new SolidBrush(TextColor), ClientRectangle, format);
         }
 
         public void SetMemento(FigureMemento memento)

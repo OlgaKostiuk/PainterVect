@@ -17,20 +17,18 @@ namespace PainterVect.ToolBar
         {
             InitializeComponent();
             toolStripBtnColor.Click += new EventHandler((s,e)=>cmd.setColor(s,e));
-            //toolStripBtnColor.Click += ToolStripBtnColor_Click;
             toolStripDropDownBtnLineWidth.DropDownItemClicked += new ToolStripItemClickedEventHandler((s, e) => cmd.setWidth(s, e, e.ClickedItem.Text));
             toolStripDropDownBtnType.DropDownItemClicked += new ToolStripItemClickedEventHandler((s, e) => cmd.setType(s, e, e.ClickedItem.Tag.ToString()));
             toolStripBtnOpen.Click += new EventHandler((s, e) => cmd.openFigures(s,e));
             toolStripBtnSave.Click += new EventHandler((s, e) => cmd.saveFigures(s, e));
-        }
 
-        //private void ToolStripBtnColor_Click(object sender, EventArgs e)
-        //{
-        //    if (dlgColor.ShowDialog() == DialogResult.OK)
-        //    {
-        //        cmd.setColor(sender, e, dlgColor.Color);
-        //    }
-        //}
+            textColorToolStripMenuItem.Click += new EventHandler((s, e) => cmd.setTextColor(s, e));
+            fontToolStripMenuItem.Click += new EventHandler((s, e) => cmd.setTextFont(s, e));
+            textToolStripTextBox.TextChanged += new EventHandler((s, e) => cmd.setText(s, e, textToolStripTextBox.Text));
+            verticalAlignToolStripMenuItem.DropDownItemClicked += new ToolStripItemClickedEventHandler((s, e) => cmd.setVerticalAlign(s, e, verticalAlignToolStripMenuItem.Text));
+            horizontalAlignToolStripMenuItem.DropDownItemClicked += new ToolStripItemClickedEventHandler((s, e) => cmd.setVerticalAlign(s, e, horizontalAlignToolStripMenuItem.Text));
+            angleToolStripTextBox.TextChanged += new EventHandler((s, e) => cmd.setTextAngle(s, e, int.Parse(angleToolStripTextBox.Text)));
+        }
 
     }
 }

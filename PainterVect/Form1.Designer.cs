@@ -41,9 +41,9 @@
             // 
             this.toolBox1.BackColor = System.Drawing.Color.LightSteelBlue;
             this.toolBox1.cmd = null;
-            this.toolBox1.Location = new System.Drawing.Point(801, 66);
+            this.toolBox1.Location = new System.Drawing.Point(800, 25);
             this.toolBox1.Name = "toolBox1";
-            this.toolBox1.Size = new System.Drawing.Size(114, 353);
+            this.toolBox1.Size = new System.Drawing.Size(114, 523);
             this.toolBox1.TabIndex = 5;
             // 
             // statusBar1
