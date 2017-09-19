@@ -30,8 +30,8 @@ namespace PainterVect
                 case "Line":
                     activeFigure.Type = FigureDrawing.Line;
                     break;
-                case "Round":
-                    activeFigure.Type = FigureDrawing.Round;
+                case "Ellipse":
+                    activeFigure.Type = FigureDrawing.Ellipse;
                     break;
                 case "Rectangle":
                     activeFigure.Type = FigureDrawing.Rectangle;

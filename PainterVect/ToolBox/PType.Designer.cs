@@ -51,8 +51,8 @@
             this.btnRound.Name = "btnRound";
             this.btnRound.Size = new System.Drawing.Size(100, 23);
             this.btnRound.TabIndex = 1;
-            this.btnRound.Tag = "Round";
-            this.btnRound.Text = "Round";
+            this.btnRound.Tag = "Ellipse";
+            this.btnRound.Text = "Ellipse";
             this.btnRound.UseVisualStyleBackColor = true;
             // 
             // btnRoundRectangle

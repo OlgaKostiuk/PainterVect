@@ -18,7 +18,7 @@ namespace PainterVect
             switch (type)
             {
                 case "Rectangle": { data.type = FigureDrawing.Rectangle; break; }
-                case "Round": { data.type = FigureDrawing.Round; break; }
+                case "Ellipse": { data.type = FigureDrawing.Ellipse; break; }
                 case "RoundRectangle": { data.type = FigureDrawing.RoundRectangle; break; }
                 case "Line": { data.type = FigureDrawing.Line; break; }
                 case "Pencil": { data.type = FigureDrawing.Pencil; break; }
@@ -31,9 +31,18 @@ namespace PainterVect
             data.lineWidth = int.Parse(lineWidth);
         }
 
-        public void setColor(object sender, EventArgs e, Color color)
+        //public void setColor(object sender, EventArgs e, Color color)
+        //{
+        //    data.color = color;
+        //}
+
+        public void setColor(object sender, EventArgs e)
         {
-            data.color = color;
+            ColorDialog dlgColor = new ColorDialog();
+            if (dlgColor.ShowDialog() == DialogResult.OK)
+            {
+                data.color = dlgColor.Color;
+            }
         }
 
         public void saveFigures(object sender, EventArgs e)

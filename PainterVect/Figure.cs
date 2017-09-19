@@ -62,9 +62,11 @@ namespace PainterVect
         private void Figure_MouseDown(object sender, MouseEventArgs e)
         {
             mouseLocation = e.Location;
-            if(e.Button == MouseButtons.Right)
+
+            if (e.Button == MouseButtons.Right)
             {
-                ContextMenuStrip.Show(e.Location);
+                ContextMenuStrip.Show(Cursor.Position);
+
             }
 
             if (e.X > Size.Width - 10 || e.Y > Size.Height - 10)
@@ -146,7 +148,7 @@ namespace PainterVect
 
             if (Type == FigureDrawing.Rectangle)
                 figure.AddRectangle(new Rectangle(pathStart, size));
-            else if (Type == FigureDrawing.Round)
+            else if (Type == FigureDrawing.Ellipse)
                 figure.AddEllipse(new Rectangle(pathStart, size));
             else if (Type == FigureDrawing.Line)
             {

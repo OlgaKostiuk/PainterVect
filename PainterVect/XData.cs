@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PainterVect
 {
-    public enum FigureDrawing { Rectangle, Round, RoundRectangle, Line, Pencil };
+    public enum FigureDrawing { Rectangle, Ellipse, RoundRectangle, Line, Pencil };
 
     public class XData
     {

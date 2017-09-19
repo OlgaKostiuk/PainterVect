@@ -159,8 +159,8 @@
             // 
             this.roundToolStripMenuItem.Name = "roundToolStripMenuItem";
             this.roundToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.roundToolStripMenuItem.Tag = "Round";
-            this.roundToolStripMenuItem.Text = "Round";
+            this.roundToolStripMenuItem.Tag = "Ellipse";
+            this.roundToolStripMenuItem.Text = "Ellipse";
             // 
             // roundRectangleToolStripMenuItem
             // 
