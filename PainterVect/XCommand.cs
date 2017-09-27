@@ -11,6 +11,7 @@ namespace PainterVect
     public class XCommand
     {
         public XData data { get; private set; } = new XData();
+        public XText text { get; private set; } = new XText();
         public PDraw pdraw;
         
         public void setType(object sender, EventArgs e, string type)
@@ -30,11 +31,6 @@ namespace PainterVect
         {
             data.lineWidth = int.Parse(lineWidth);
         }
-
-        //public void setColor(object sender, EventArgs e, Color color)
-        //{
-        //    data.color = color;
-        //}
 
         public void setColor(object sender, EventArgs e)
         {
@@ -83,7 +79,7 @@ namespace PainterVect
             ColorDialog dlgColor = new ColorDialog();
             if (dlgColor.ShowDialog() == DialogResult.OK)
             {
-                data.textColor = dlgColor.Color;
+                text.textColor = dlgColor.Color;
             }
         }
 
@@ -92,27 +88,27 @@ namespace PainterVect
             FontDialog dlg = new FontDialog();
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                data.textFont = dlg.Font;
+                text.textFont = dlg.Font;
             }
         }
 
         public void setTextAngle(object sender, EventArgs e, int angle)
         {
-            data.textAngle = angle;
+            text.textAngle = angle;
         }
 
         public void setText(object sender, EventArgs e, string text)
         {
-            data.textString = text;
+            this.text.textString = text;
         }
 
         public void setVerticalAlign(object sender, EventArgs e, string align)
         {
             switch (align)
             {
-                case "Center": { data.verticalAlign = StringAlignment.Center; break; }
-                case "Near": { data.verticalAlign = StringAlignment.Near; break; }
-                case "Far": { data.verticalAlign = StringAlignment.Far; break; }
+                case "Center": { text.verticalAlign = StringAlignment.Center; break; }
+                case "Near": { text.verticalAlign = StringAlignment.Near; break; }
+                case "Far": { text.verticalAlign = StringAlignment.Far; break; }
                 default: break;
             }
         }
@@ -121,9 +117,9 @@ namespace PainterVect
         {
             switch (align)
             {
-                case "Center": { data.horizontalAlign = StringAlignment.Center; break; }
-                case "Near": { data.horizontalAlign = StringAlignment.Near; break; }
-                case "Far": { data.horizontalAlign = StringAlignment.Far; break; }
+                case "Center": { text.horizontalAlign = StringAlignment.Center; break; }
+                case "Near": { text.horizontalAlign = StringAlignment.Near; break; }
+                case "Far": { text.horizontalAlign = StringAlignment.Far; break; }
                 default: break;
             }
         }

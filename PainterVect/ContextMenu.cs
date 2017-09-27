@@ -32,9 +32,9 @@ namespace PainterVect
         {
             switch (e.ClickedItem.Text)
             {
-                case "Center": { activeFigure.HorizontalAlign = StringAlignment.Center; break; }
-                case "Near": { activeFigure.HorizontalAlign = StringAlignment.Near; break; }
-                case "Far": { activeFigure.HorizontalAlign = StringAlignment.Far; break; }
+                case "Center": { activeFigure.mFigure.text.horizontalAlign = StringAlignment.Center; break; }
+                case "Near": { activeFigure.mFigure.text.horizontalAlign = StringAlignment.Near; break; }
+                case "Far": { activeFigure.mFigure.text.horizontalAlign = StringAlignment.Far; break; }
                 default: break;
             }
             activeFigure.ReDrawFigure();
@@ -44,9 +44,9 @@ namespace PainterVect
         {
             switch (e.ClickedItem.Text)
             {
-                case "Center": { activeFigure.VerticalAlign = StringAlignment.Center; break; }
-                case "Near": { activeFigure.VerticalAlign = StringAlignment.Near; break; }
-                case "Far": { activeFigure.VerticalAlign = StringAlignment.Far; break; }
+                case "Center": { activeFigure.mFigure.text.verticalAlign = StringAlignment.Center; break; }
+                case "Near": { activeFigure.mFigure.text.verticalAlign = StringAlignment.Near; break; }
+                case "Far": { activeFigure.mFigure.text.verticalAlign = StringAlignment.Far; break; }
                 default: break;
             }
             activeFigure.ReDrawFigure();
@@ -54,13 +54,13 @@ namespace PainterVect
 
         private void TextToolStripTextBox_TextChanged(object sender, EventArgs e)
         {
-            activeFigure.TextString = textToolStripTextBox.Text;
+            activeFigure.mFigure.text.textString = textToolStripTextBox.Text;
             activeFigure.ReDrawFigure();
         }
 
         private void AngleToolStripTextBox_TextChanged(object sender, EventArgs e)
         {
-            activeFigure.TextAngle = int.Parse(angleToolStripTextBox.Text);
+            activeFigure.mFigure.text.textAngle = int.Parse(angleToolStripTextBox.Text);
             activeFigure.ReDrawFigure();
         }
 
@@ -69,7 +69,7 @@ namespace PainterVect
             FontDialog dlg = new FontDialog();
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                activeFigure.TextFont = dlg.Font;
+                activeFigure.mFigure.text.textFont = dlg.Font;
             }
             activeFigure.ReDrawFigure();
         }
@@ -79,7 +79,7 @@ namespace PainterVect
             ColorDialog dlgColor = new ColorDialog();
             if (dlgColor.ShowDialog() == DialogResult.OK)
             {
-                activeFigure.TextColor = dlgColor.Color;
+                activeFigure.mFigure.text.textColor = dlgColor.Color;
             }
             activeFigure.ReDrawFigure();
         }
@@ -92,16 +92,16 @@ namespace PainterVect
             switch (type)
             {
                 case "Line":
-                    activeFigure.Type = FigureDrawing.Line;
+                    activeFigure.mFigure.data.type = FigureDrawing.Line;
                     break;
                 case "Ellipse":
-                    activeFigure.Type = FigureDrawing.Ellipse;
+                    activeFigure.mFigure.data.type = FigureDrawing.Ellipse;
                     break;
                 case "Rectangle":
-                    activeFigure.Type = FigureDrawing.Rectangle;
+                    activeFigure.mFigure.data.type = FigureDrawing.Rectangle;
                     break;
                 case "RoundRectangle":
-                    activeFigure.Type = FigureDrawing.RoundRectangle;
+                    activeFigure.mFigure.data.type = FigureDrawing.RoundRectangle;
                     break;
 
             }
@@ -110,7 +110,7 @@ namespace PainterVect
 
         private void ChangeWidth(object sender, ToolStripItemClickedEventArgs e)
         {
-            activeFigure.LineWidth = Convert.ToInt32(e.ClickedItem.Text);
+            activeFigure.mFigure.data.lineWidth = Convert.ToInt32(e.ClickedItem.Text);
             activeFigure.ReDrawFigure();
         }
 
@@ -119,7 +119,7 @@ namespace PainterVect
             ColorDialog dlgColor = new ColorDialog();
             if (dlgColor.ShowDialog() == DialogResult.OK)
             {
-                activeFigure.Color = dlgColor.Color;
+                activeFigure.mFigure.data.color = dlgColor.Color;
                 activeFigure.ReDrawFigure();
             }
         }

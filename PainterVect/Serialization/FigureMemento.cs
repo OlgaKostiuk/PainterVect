@@ -18,22 +18,56 @@ namespace PainterVect
         public int lineWidth { get; set; }
         public int type { get; set; }
 
+        public string textString { get; set; }
+        public int textAngle { get; set; }
+        public int textColor { get; set; }
+        public int horizontalAlign { get; set; }
+        public int verticalAlign { get; set; }
+        public string fontName { get; set; }
+        public int textSize { get; set; }
+
         public FigureMemento() { }
 
-        public FigureMemento(Figure figure)
+        public FigureMemento(MFigure mFigure)
         {
-            x1 = figure.Start.X;
-            y1 = figure.Start.Y;
-            x2 = figure.End.X;
-            y2 = figure.End.Y;
-            color = figure.Color.ToArgb();
-            lineWidth = figure.LineWidth;
-            type = (int)figure.Type;
+            x1 = mFigure.Start.X;
+            y1 = mFigure.Start.Y;
+            x2 = mFigure.End.X;
+            y2 = mFigure.End.Y;
+            color = mFigure.data.color.ToArgb();
+            lineWidth = mFigure.data.lineWidth;
+            type = (int)mFigure.data.type;
+
+            textString = mFigure.text.textString;
+            textAngle = mFigure.text.textAngle;
+            textColor = mFigure.text.textColor.ToArgb();
+            horizontalAlign = (int)mFigure.text.horizontalAlign;
+            verticalAlign = (int)mFigure.text.verticalAlign;
+            fontName = mFigure.text.textFont.Name;
+            textSize = (int)mFigure.text.textFont.Size;
         }
 
-        public Figure GetState()
+        public MFigure GetState()
         {
-            return new Figure((FigureDrawing)type, Color.FromArgb(color), lineWidth, new Point(x1, y1), new Point(x2, y2), new Font(new FontFamily("Arial"), 20));
+            XData data = new XData();
+            data.type = (FigureDrawing)type;
+            data.color = Color.FromArgb(color);
+            data.lineWidth = lineWidth;
+
+            XText text = new XText();
+            text.textString = textString;
+            text.textAngle = textAngle;
+            text.textColor = Color.FromArgb(textColor);
+            text.textFont = new Font(fontName, textSize);
+            text.horizontalAlign = (StringAlignment)horizontalAlign;
+            text.verticalAlign = (StringAlignment)verticalAlign;
+            return new MFigure()
+            {
+                data = data,
+                text = text,
+                Start = new Point(x1, y1),
+                End = new Point(x2, y2)
+            };
         }
     }
 }

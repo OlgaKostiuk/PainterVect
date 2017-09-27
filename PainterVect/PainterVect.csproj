@@ -78,6 +78,7 @@
     <Compile Include="MainMenu\MainMenu.Designer.cs">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="MFigure.cs" />
     <Compile Include="PDraw.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -157,6 +158,7 @@
     </Compile>
     <Compile Include="XCommand.cs" />
     <Compile Include="XData.cs" />
+    <Compile Include="XText.cs" />
     <EmbeddedResource Include="ContextMenu.resx">
       <DependentUpon>ContextMenu.cs</DependentUpon>
     </EmbeddedResource>

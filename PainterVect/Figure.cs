@@ -14,21 +14,9 @@ namespace PainterVect
     [Serializable()]
     public partial class Figure : PictureBox
     {
-        public Point Start { get; private set; }
-        public Point End { get; private set; }
-        public Color Color { get; set; }
-        public int LineWidth { get; set; }
-        public FigureDrawing Type { get; set; }
-        public Point mouseLocation = new Point();
+        public MFigure mFigure = new MFigure();
+        Point mouseLocation = new Point();
         bool resize = false;
-
-        public string TextString { get; set; }
-        public Font TextFont {get; set; }
-        public int TextAngle { get; set; }
-        public Color TextColor { get; set; }
-        public StringAlignment HorizontalAlign { get; set; }
-        public StringAlignment VerticalAlign { get; set; }
-
 
         public Figure()
         {
@@ -41,28 +29,10 @@ namespace PainterVect
             ContextMenuStrip = contextMenu1.ContextMenuStrip;
         }
 
-        public Figure(FigureDrawing type, Color color, int lineW, Point start, Point end,
-                        Font font,
-                        string text = "",
-                        int textAngle = 0,
-                        Color textColor = new Color(),
-                        StringAlignment horizontalAlign = StringAlignment.Center,
-                        StringAlignment verticalAlign = StringAlignment.Center)
+        public Figure(MFigure mFigure)
         {
             InitializeComponent();
-            Color = color;
-            Start = start;
-            End = end;
-            Type = type;
-            LineWidth = lineW;
-
-            TextFont = font == null ? new Font(new FontFamily("Arial"), 20) : font;
-            TextString = text;
-            TextAngle = textAngle;
-            TextColor = textColor;
-            HorizontalAlign = horizontalAlign;
-            VerticalAlign = verticalAlign;
-
+            this.mFigure = mFigure;
             MouseMove += Figure_MouseMove;
             MouseDown += Figure_MouseDown;
             MouseUp += Figure_MouseUp;
@@ -118,8 +88,8 @@ namespace PainterVect
                         PictureBox pb = sender as PictureBox;
                         int x_shift = e.X - mouseLocation.X;
                         int y_shift = e.Y - mouseLocation.Y;
-                        Start = new Point(Start.X + e.X - mouseLocation.X, Start.Y + e.Y - mouseLocation.Y);
-                        End = new Point(End.X + e.X - mouseLocation.X, End.Y + e.Y - mouseLocation.Y);
+                        mFigure.Start = new Point(mFigure.Start.X + e.X - mouseLocation.X, mFigure.Start.Y + e.Y - mouseLocation.Y);
+                        mFigure.End = new Point(mFigure.End.X + e.X - mouseLocation.X, mFigure.End.Y + e.Y - mouseLocation.Y);
                         Location = new Point(Location.X + x_shift, Location.Y + y_shift);
                         mouseLocation = e.Location;
                     }
@@ -128,10 +98,8 @@ namespace PainterVect
                 {
                     Height += e.Y - mouseLocation.Y;
                     Width += e.X - mouseLocation.X;
-                    //Start = new Point(Start.X + e.X - mouseLocation.X, Start.Y + e.Y - mouseLocation.Y);
-                    End = new Point(End.X + e.X - mouseLocation.X, End.Y + e.Y - mouseLocation.Y);
+                    mFigure.End = new Point(mFigure.End.X + e.X - mouseLocation.X, mFigure.End.Y + e.Y - mouseLocation.Y);
                     mouseLocation = e.Location;
-
                 }
                 Invalidate();
                 ReDrawFigure();
@@ -142,7 +110,7 @@ namespace PainterVect
         {
             Image = new Bitmap(Width, Height);
             Graphics graph = Graphics.FromImage(Image);
-            graph.DrawPath(new Pen(Color, LineWidth), GetGraphicsPath());
+            graph.DrawPath(new Pen(mFigure.data.color, mFigure.data.lineWidth), GetGraphicsPath());
             DrawText(graph);
         }
 
@@ -151,37 +119,37 @@ namespace PainterVect
             Size = new Size(GetFigureSize().Width, GetFigureSize().Height);
             Image = new Bitmap(Width, Height);
             Graphics graph = Graphics.FromImage(Image);
-            graph.DrawPath(new Pen(Color, LineWidth), GetGraphicsPath());
+            graph.DrawPath(new Pen(mFigure.data.color, mFigure.data.lineWidth), GetGraphicsPath());
             DrawText(graph);
         }
 
         public Size GetFigureSize()
         {
-            int width = Math.Abs(End.X - Start.X);
-            int height = Math.Abs(End.Y - Start.Y);
+            int width = Math.Abs(mFigure.End.X - mFigure.Start.X);
+            int height = Math.Abs(mFigure.End.Y - mFigure.Start.Y);
             return new Size(width, height);
         }
 
         public GraphicsPath GetGraphicsPath()
         {
 
-            Size size = new Size(GetFigureSize().Width-LineWidth*2, GetFigureSize().Height-LineWidth*2);
-            Point pathStart = new Point(LineWidth, LineWidth);
+            Size size = new Size(GetFigureSize().Width- mFigure.data.lineWidth *2, GetFigureSize().Height- mFigure.data.lineWidth *2);
+            Point pathStart = new Point(mFigure.data.lineWidth, mFigure.data.lineWidth);
 
             GraphicsPath figure = new GraphicsPath();
 
-            if (Type == FigureDrawing.Rectangle)
+            if (mFigure.data.type == FigureDrawing.Rectangle)
                 figure.AddRectangle(new Rectangle(pathStart, size));
-            else if (Type == FigureDrawing.Ellipse)
+            else if (mFigure.data.type == FigureDrawing.Ellipse)
                 figure.AddEllipse(new Rectangle(pathStart, size));
-            else if (Type == FigureDrawing.Line)
+            else if (mFigure.data.type == FigureDrawing.Line)
             {
-                if(Start.X > End.X || Start.Y > End.Y)
+                if(mFigure.Start.X > mFigure.End.X || mFigure.Start.Y > mFigure.End.Y)
                     figure.AddLine(new Point(Width, 0), new Point(0, Height));
                 else
                     figure.AddLine(new Point(0,0), new Point(Width,Height));
             }                
-            else if (Type == FigureDrawing.RoundRectangle)
+            else if (mFigure.data.type == FigureDrawing.RoundRectangle)
                 figure.AddPath(RoundRectangle(new Rectangle(pathStart, size), 20), false);
 
             return figure;
@@ -207,33 +175,28 @@ namespace PainterVect
         private void DrawText(Graphics g)
         {
             StringFormat format = new StringFormat();
-            format.LineAlignment = VerticalAlign;
-            format.Alignment = HorizontalAlign;
+            format.LineAlignment = mFigure.text.verticalAlign;
+            format.Alignment = mFigure.text.horizontalAlign;
 
             //move rotation point to center of image
             g.TranslateTransform((float)ClientRectangle.Width / 2, (float)ClientRectangle.Height / 2);
             //rotate
-            g.RotateTransform(TextAngle);
+            g.RotateTransform(mFigure.text.textAngle);
             //move image back
             g.TranslateTransform(-(float)ClientRectangle.Width / 2, -(float)ClientRectangle.Height / 2);
 
             g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixelGridFit;
-            g.DrawString(TextString, TextFont, new SolidBrush(TextColor), ClientRectangle, format);
+            g.DrawString(mFigure.text.textString, mFigure.text.textFont, new SolidBrush(mFigure.text.textColor), ClientRectangle, format);
         }
 
         public void SetMemento(FigureMemento memento)
         {
-            Figure figure = memento.GetState();
-            Type = figure.Type;
-            Start = figure.Start;
-            End = figure.End;
-            Color = figure.Color;
-            LineWidth = figure.LineWidth;
+            mFigure = memento.GetState();
         }
 
         public FigureMemento GetMemento()
         {
-            return new FigureMemento(this);
+            return new FigureMemento(mFigure);
         }
     }
 }
